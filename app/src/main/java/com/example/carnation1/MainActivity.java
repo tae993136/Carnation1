@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
      *  포트 번호는 7030
      */
     TextView textView;
-    EditText editText;
+    TextView textView2;
+    EditText idText;
+    EditText pwText;
     Button button;
     Socket socket;
 
@@ -30,12 +35,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView = (TextView) findViewById(R.id.textView);
-        editText = (EditText) findViewById(R.id.editText);
+        textView2 = (TextView) findViewById(R.id.textView2);
+        idText = (EditText) findViewById(R.id.idText);
+        pwText = (EditText) findViewById(R.id.pwText);
         button = (Button) findViewById(R.id.button);
         socket = new Socket();
 
         button.setOnClickListener(v -> {
-            send(editText.getText().toString());
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("type", "login");
+                jsonObject.put("id", idText.getText().toString());
+                jsonObject.put("pw", pwText.getText().toString());
+                send(jsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -58,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     socket.connect(new InetSocketAddress("104.197.76.225", 7030));
 
                 byte[] bytes;
-                String message;
+                String id_message;
                 OutputStream os = socket.getOutputStream();
                 bytes = data.getBytes(StandardCharsets.UTF_8);
                 os.write(bytes);
@@ -67,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 InputStream is = socket.getInputStream();
                 bytes = new byte[100];
                 int readByteCount = is.read(bytes);
-                message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
-                String finalMessage = message;
+                id_message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
+                String finalMessage = id_message;
 
 
                 runOnUiThread(() -> textView.setText(finalMessage));

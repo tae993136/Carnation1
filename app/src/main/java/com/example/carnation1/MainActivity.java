@@ -2,6 +2,7 @@ package com.example.carnation1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     EditText pwText;
     Button button;
     Socket socket;
-
+    char next_context = 0;
+    String userNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         socket = new Socket();
 
+
         button.setOnClickListener(v -> {
             JSONObject jsonObject = new JSONObject();
             try {
@@ -48,9 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject.put("id", idText.getText().toString());
                 jsonObject.put("pw", pwText.getText().toString());
                 send(jsonObject.toString());
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            if (next_context==0)
+            {
+                Intent intent = new Intent(MainActivity.this, Mainscreen.class);
+                startActivity(intent);
+            }
+
         });
     }
 
@@ -59,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         if (!socket.isClosed()) {
             try {
                 socket.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -83,13 +97,19 @@ public class MainActivity extends AppCompatActivity {
                 bytes = new byte[100];
                 int readByteCount = is.read(bytes);
                 id_message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
+/*
+                JSONObject jsonObject = (JSONObject) new JSONParser().parse(id_message);
+                if (jsonObject.get("result").equals("OK"))
+                {
+                    userNumber = jsonObject.get("userNumber").toString();
+                }*/
                 String finalMessage = id_message;
-
-
                 runOnUiThread(() -> textView.setText(finalMessage));
-            } catch (IOException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+
         });
         thread.start();
     }

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carnation1">
         <activity
+            android:name=".Mypage"
+            android:exported="false" />
+        <activity
             android:name=".Mainscreen"
             android:exported="false" />
         <activity

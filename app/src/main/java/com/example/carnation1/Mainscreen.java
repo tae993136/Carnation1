@@ -18,5 +18,11 @@ public class Mainscreen extends AppCompatActivity {
             Intent intent = new Intent(Mainscreen.this,MainActivity.class);
             startActivity(intent);
         });
+        Button mypage_button = (Button) findViewById(R.id.mypage_button);
+        mypage_button.setOnClickListener(v->{
+            Intent intent = new Intent(Mainscreen.this,Mypage.class);
+            startActivity(intent);
+        });
     }
+
 }

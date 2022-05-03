@@ -15,19 +15,21 @@ public class Mainscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
         Button button = (Button) findViewById(R.id.button);
-        Button parkingButton = (Button)findViewById(R.id.parking_button);
-
+        Button parking_Button = (Button)findViewById(R.id.parking_button);
+        Button mypage_button = (Button) findViewById(R.id.mypage_button);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(Mainscreen.this,MainActivity.class);
             startActivity(intent);
         });
+        //todo
+        parking_Button.setOnClickListener(v->{
+            Intent intent = new Intent(Mainscreen.this,ParkingScreen.class);
+            startActivity(intent);
 
-        parkingButton.setOnClickListener(v->{
-                    Intent intent = new Intent(Mainscreen.this,ParkingScreen.class);
-                    startActivity(intent);
-            });
+        });
 
-        Button mypage_button = (Button) findViewById(R.id.mypage_button);
+
+
         mypage_button.setOnClickListener(v->{
 
 
@@ -47,6 +49,8 @@ public class Mainscreen extends AppCompatActivity {
                 builder.create().show();
 
         });
+
+
     }
 
 }

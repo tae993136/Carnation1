@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Mainscreen"
+    android:background="#31AAE1"
+    >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="뒤로가기"
+        android:textColor="#FFBF00"
+        />
+
+    <Button
+        android:id="@+id/mypage_button"
+        android:layout_width="108dp"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:text="마이페이지"
+        android:textColor="#FFBF00"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="576dp" />
+
+    <Button
+        android:id="@+id/Reservation_button"
+        android:layout_width="108dp"
+        android:layout_height="75dp"
+        android:text="예약 현황"
+        android:gravity="center"
+        android:textColor="#FFBF00"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="576dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

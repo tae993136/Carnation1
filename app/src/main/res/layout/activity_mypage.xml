@@ -23,5 +23,22 @@
         app:layout_constraintTop_toBottomOf="@id/button"
         />
 
-
+    <Button
+        android:id="@+id/Reservation_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="예약 관리"
+        android:textColor="#FFBF00"
+        app:layout_constraintBottom_toBottomOf="parent"
+         />
+    <Button
+        android:id="@+id/User_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="사용권 관리"
+        android:textColor="#FFBF00"
+        app:layout_constraintBottom_toTopOf="@id/Reservation_button"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

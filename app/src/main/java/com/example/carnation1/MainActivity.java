@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.*;
+import org.json.simple.parser.JSONParser;
 
 
 import java.io.IOException;
@@ -96,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 bytes = new byte[100];
                 int readByteCount = is.read(bytes);
                 id_message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
-/*
+
                 JSONObject jsonObject = (JSONObject) new JSONParser().parse(id_message);
                 if (jsonObject.get("result").equals("OK"))
                 {
                     userNumber = jsonObject.get("userNumber").toString();
-                }*/
+                }
                 String finalMessage = id_message;
                 runOnUiThread(() -> textView.setText(finalMessage));
 

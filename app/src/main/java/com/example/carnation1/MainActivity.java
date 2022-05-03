@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
-import org.json.*;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     EditText pwText;
     Button button;
     Socket socket;
-    char next_context = 0;
+    boolean next_context ;
     String userNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 send(jsonObject.toString());
 
 
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            if (next_context==0)
+            if (next_context)
             {
                 Intent intent = new Intent(MainActivity.this, Mainscreen.class);
                 startActivity(intent);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(() -> {
             try {
                 if (!socket.isConnected())
-                    socket.connect(new InetSocketAddress("104.197.76.225", 7030));
+                    socket.connect(new InetSocketAddress("34.132.25.146", 7030));
 
                 byte[] bytes;
                 String id_message;
@@ -97,15 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 bytes = new byte[100];
                 int readByteCount = is.read(bytes);
                 id_message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
-
-                JSONObject jsonObject = (JSONObject) new JSONParser().parse(id_message);
-                if (jsonObject.get("result").equals("OK"))
-                {
-                    userNumber = jsonObject.get("userNumber").toString();
-                }
+                //id_message = ((JSONObject)(new JSONParser().parse(id_message))).get("sessionNumber").toString();
                 String finalMessage = id_message;
                 runOnUiThread(() -> textView.setText(finalMessage));
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

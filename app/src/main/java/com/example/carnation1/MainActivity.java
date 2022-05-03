@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.*;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
      *  포트 번호는 7030
      */
     TextView textView;
-    TextView textView2;
     EditText idText;
     EditText pwText;
     Button button;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView = (TextView) findViewById(R.id.textView);
-        textView2 = (TextView) findViewById(R.id.textView2);
+
         idText = (EditText) findViewById(R.id.idText);
         pwText = (EditText) findViewById(R.id.pwText);
         button = (Button) findViewById(R.id.button);
@@ -53,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject.put("id", idText.getText().toString());
                 jsonObject.put("pw", pwText.getText().toString());
                 send(jsonObject.toString());
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

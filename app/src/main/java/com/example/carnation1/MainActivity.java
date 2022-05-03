@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.simple.JSONObject;
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     EditText pwText;
     Button button;
     Socket socket;
-    boolean next_context ;
     String userNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            if (next_context)
-            {
-                Intent intent = new Intent(MainActivity.this, Mainscreen.class);
-                startActivity(intent);
-            }
 
         });
     }
@@ -97,9 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 bytes = new byte[100];
                 int readByteCount = is.read(bytes);
                 id_message = new String(bytes, 0, readByteCount, StandardCharsets.UTF_8);
-                //id_message = ((JSONObject)(new JSONParser().parse(id_message))).get("sessionNumber").toString();
-                String finalMessage = id_message;
-                runOnUiThread(() -> textView.setText(finalMessage));
+                JSONObject result = (JSONObject) new JSONParser().parse(id_message);
+                if (result.get("result").equals("OK")) {
+                    String sessionNumber = result.get("sessionNumber").toString();
+                    String userNumber = result.get("userNumber").toString();
+
+                    Intent intent = new Intent(MainActivity.this, Mainscreen.class);
+                    startActivity(intent);
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Wrong account", Toast.LENGTH_SHORT).show();
+                    });
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

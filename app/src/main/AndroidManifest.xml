@@ -16,6 +16,9 @@
             android:name=".Mypage"
             android:exported="false" />
         <activity
+            android:name=".ParkingScreen"
+            android:exported="false" />
+        <activity
             android:name=".Mainscreen"
             android:exported="false" />
         <activity

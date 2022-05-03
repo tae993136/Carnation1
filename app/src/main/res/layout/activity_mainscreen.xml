@@ -38,11 +38,11 @@
          />
 
     <Button
-        android:id="@+id/Reservation_button"
+        android:id="@+id/parking_button"
         android:layout_width="108dp"
         android:layout_height="75dp"
         android:gravity="center"
-        android:text="예약 현황"
+        android:text="주차 현황"
         android:textColor="#FFBF00"
         app:layout_constraintTop_toBottomOf="@id/parking_image"
         app:layout_constraintRight_toRightOf="@id/parking_image"

@@ -23,7 +23,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
-    /* IP: 104.197.76.225
+    /* IP: 34.132.25.146
      *  포트 번호는 7030
      */
     TextView textView;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     Socket socket;
     String userNumber;
+    boolean isBackPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,5 +112,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
         thread.start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isBackPressed)
+            finishAffinity();
+        Toast.makeText(this, "다시 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        new Thread(() -> {
+            isBackPressed = true;
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            isBackPressed = false;
+        }).start();
     }
 }

@@ -22,7 +22,7 @@ public class Mainscreen extends AppCompatActivity {
             startActivity(intent);
         });
         //todo
-        parking_Button.setOnClickListener(v->{
+        parking_Button.setOnClickListener(v -> {
             Intent intent = new Intent(Mainscreen.this,ParkingScreen.class);
             startActivity(intent);
 

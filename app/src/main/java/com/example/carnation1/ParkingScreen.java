@@ -11,7 +11,7 @@ public class ParkingScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypage);
+        setContentView(R.layout.activity_parking_screen);
         Button button = (Button) findViewById(R.id.button);
 
         button.setOnClickListener(v -> {

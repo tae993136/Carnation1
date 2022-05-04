@@ -19,8 +19,11 @@ import java.util.concurrent.TimeoutException;
 
 public class ServerConnection {
     private static final ServerConnection instance = new ServerConnection();
-    private final String IP = "34.132.25.146";
-    private final int PORT = 7030;
+    private static final String IP = "34.132.25.146";
+    private static final int PORT = 7030;
+    private static final String TYPE = "type";
+    private static final String SESSION_NUMBER = "sessionNumber";
+    private static final String USER_NUMBER = "userNumber";
     private static Socket socket;
     public static long sessionNumber;
     public static String userNumber;
@@ -44,7 +47,7 @@ public class ServerConnection {
             @Override
             protected Boolean doInBackground(Void... voids) {
                 try {
-                    socket.connect(new InetSocketAddress(getInstance().IP, getInstance().PORT));
+                    socket.connect(new InetSocketAddress(IP, PORT));
                 } catch (IOException e) {
                     e.printStackTrace();
                     return false;
@@ -103,6 +106,11 @@ public class ServerConnection {
                 }
             }
         };
+
+        if (!data.containsKey(SESSION_NUMBER))
+            data.put(SESSION_NUMBER, sessionNumber);
+        if (!data.containsKey(USER_NUMBER))
+            data.put(USER_NUMBER, userNumber);
 
         sender.execute(data);
         JSONObject result = null;

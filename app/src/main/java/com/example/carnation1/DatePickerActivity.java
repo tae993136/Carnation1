@@ -46,13 +46,7 @@ public class DatePickerActivity extends AppCompatActivity {
         DatePicker datePicker = findViewById(R.id.vDatePicker);
         datePicker.init(mYear, mMonth, mDay, mOnDateChangedListener);
 
-        timePicker.setOnTimeChangedListener (new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view,int hourOfDay, int minute) {
 
-                textView.setText(hourOfDay + "시" + minute + "분");
-            }
-        });
 
 
     }

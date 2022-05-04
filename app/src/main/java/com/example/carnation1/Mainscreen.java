@@ -25,7 +25,6 @@ public class Mainscreen extends AppCompatActivity {
         parking_Button.setOnClickListener(v -> {
             Intent intent = new Intent(Mainscreen.this,ParkingScreen.class);
             startActivity(intent);
-
         });
 
 

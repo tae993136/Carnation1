@@ -5,22 +5,32 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.carnation1.DatePickerActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Mypage extends AppCompatActivity {
     private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
         Intent intent = getIntent();
-        String msg = intent.getStringExtra("mMonth");
-        textView = (TextView)findViewById(R.id.textView);
+
+        String msg_Year = intent.getStringExtra("mYear") + "년 ";
+        String msg_Month = intent.getStringExtra("mMonth") + "월 ";
+        String msg_Day = intent.getStringExtra("mDay") + "일 ";
+        String msg_Hour = intent.getStringExtra("mHour") + "시 ";
+        String msg_Minute = intent.getStringExtra("mMin") + "분";
+        String msg = msg_Year + msg_Month + msg_Day + msg_Hour + msg_Minute;
+
+        textView = findViewById(R.id.textView);
         textView.setText(msg);
-        Button button = (Button) findViewById(R.id.button);
+        Button button = findViewById(R.id.button);
 
         button.setOnClickListener(v -> {
-            Intent intent1 = new Intent(Mypage.this,Mainscreen.class);
+            Intent intent1 = new Intent(Mypage.this, Mainscreen.class);
             startActivity(intent1);
         });
     }

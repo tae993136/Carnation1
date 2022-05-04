@@ -28,7 +28,7 @@ public class DatePickerActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_date_picker);
         Calendar calendar = new GregorianCalendar();
-        textView = (TextView)findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
 
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
@@ -37,7 +37,7 @@ public class DatePickerActivity extends AppCompatActivity {
         mMin = calendar.get(Calendar.MINUTE);
         textView = findViewById(R.id.textView);
 
-        TimePicker timePicker = (TimePicker) findViewById(R.id.TimePicker);
+        TimePicker timePicker = findViewById(R.id.TimePicker);
 
 
         DatePicker datePicker = findViewById(R.id.vDatePicker);
@@ -51,21 +51,18 @@ public class DatePickerActivity extends AppCompatActivity {
 
 
     public void mOnClick(View v) {
-        Intent intent = new Intent();
-       //final int REQUEST_CODE = 1;
-        String str =Integer.toString(9999);
+        Intent intent = new Intent(DatePickerActivity.this,Mypage.class);
 
-        intent.putExtra(TAG_MSG, mYear);
-
-        intent.putExtra("mMonth","hello");
-        intent.putExtra("mDay", mDay);
-        intent.putExtra("mHour", mHour);
-        intent.putExtra("mMin", mMin);
+        intent.putExtra("mYear",Integer.toString(mYear));
+        intent.putExtra("mMonth",Integer.toString(mMonth));
+        intent.putExtra("mDay", Integer.toString(mDay));
+        intent.putExtra("mHour", Integer.toString(mHour));
+        intent.putExtra("mMin", Integer.toString(mMin));
        // String msg = intent.getStringExtra("mYear");
 
-        //startActivityForResult(intent, 1);
-        setResult(RESULT_OK, intent);
-        finish();
+        startActivity(intent);
+        //setResult(RESULT_OK, intent);
+       // finish();
     }
 
 
@@ -81,11 +78,14 @@ public class DatePickerActivity extends AppCompatActivity {
         }
 
     };
-    @Override
+   /*
+   @Override
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String msg = data.getStringExtra("mYear");
         textView.setText(msg);
     }
+    */
 
 }

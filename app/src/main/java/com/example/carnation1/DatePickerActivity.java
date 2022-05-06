@@ -22,6 +22,7 @@ public class DatePickerActivity extends AppCompatActivity {
 
      int mHour = 0, mMin = 0;
      int mYear = 0, mMonth = 0, mDay = 0;
+     String parkingSpot;
 
     @Override
 
@@ -39,15 +40,13 @@ public class DatePickerActivity extends AppCompatActivity {
         mHour = calendar.get(Calendar.HOUR_OF_DAY);
         mMin = calendar.get(Calendar.MINUTE);
 
+
         TimePicker timePicker = findViewById(R.id.vTimePicker);
         timePicker.setHour(mHour);
         timePicker.setMinute(mMin);
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
-                mHour = hour;
-                mMin = minute;
-            }
+        timePicker.setOnTimeChangedListener((timePicker1, hour, minute) -> {
+            mHour = hour;
+            mMin = minute;
         });
         DatePicker datePicker = findViewById(R.id.vDatePicker);
         datePicker.init(mYear, mMonth, mDay, mOnDateChangedListener);
@@ -60,7 +59,7 @@ public class DatePickerActivity extends AppCompatActivity {
 
     public void mOnClick(View v) {
         Intent intent = new Intent(DatePickerActivity.this,Mypage.class);
-
+        parkingSpot = intent.getStringExtra("parkingSpot");
         intent.putExtra("mYear",Integer.toString(mYear));
         intent.putExtra("mMonth",Integer.toString(mMonth));
         intent.putExtra("mDay", Integer.toString(mDay));
@@ -69,13 +68,12 @@ public class DatePickerActivity extends AppCompatActivity {
        // String msg = intent.getStringExtra("mYear");
 
         JSONObject jsonObject = new JSONObject();
-
+        jsonObject.put("parkingSpot",parkingSpot);
         jsonObject.put("type", "reservation");
         jsonObject.put("year", Integer.toString(mYear));
         jsonObject.put("month", Integer.toString(mMonth));
         jsonObject.put("day", Integer.toString(mDay));
         jsonObject.put("hour", Integer.toString(mHour));
-        //jsonObject.put("min", Integer.toString(mMin));
         jsonObject.put("sessionNumber",ServerConnection.sessionNumber);
         jsonObject.put("userNumber",ServerConnection.userNumber);
         ServerConnection.send(jsonObject);
@@ -92,15 +90,5 @@ public class DatePickerActivity extends AppCompatActivity {
                 mDay = dd;
             };
 
-
-   /*
-   @Override
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        String msg = data.getStringExtra("mYear");
-        textView.setText(msg);
-    }
-    */
 
 }

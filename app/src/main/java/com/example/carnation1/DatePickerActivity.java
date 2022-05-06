@@ -18,7 +18,7 @@ import java.util.GregorianCalendar;
 
 
 public class DatePickerActivity extends AppCompatActivity {
-    public static final String TAG_MSG = "message";
+
 
      int mHour = 0, mMin = 0;
      int mYear = 0, mMonth = 0, mDay = 0;
@@ -39,7 +39,7 @@ public class DatePickerActivity extends AppCompatActivity {
         mHour = calendar.get(Calendar.HOUR_OF_DAY);
         mMin = calendar.get(Calendar.MINUTE);
 
-        TimePicker timePicker = (TimePicker) findViewById(R.id.vTimePicker);
+        TimePicker timePicker = findViewById(R.id.vTimePicker);
         timePicker.setHour(mHour);
         timePicker.setMinute(mMin);
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -78,7 +78,7 @@ public class DatePickerActivity extends AppCompatActivity {
         //jsonObject.put("min", Integer.toString(mMin));
         jsonObject.put("sessionNumber",ServerConnection.sessionNumber);
         jsonObject.put("userNumber",ServerConnection.userNumber);
-        jsonObject = ServerConnection.send(jsonObject);
+        ServerConnection.send(jsonObject);
         startActivity(intent);
         setResult(RESULT_OK, intent);
        // finish();
@@ -86,17 +86,11 @@ public class DatePickerActivity extends AppCompatActivity {
 
 
     DatePicker.OnDateChangedListener mOnDateChangedListener =
-            new DatePicker.OnDateChangedListener() {
-
-        @Override
-
-        public void onDateChanged(DatePicker datePicker, int yy, int mm, int dd) {
-            mYear = yy;
-            mMonth = mm;
-            mDay = dd;
-        }
-
-    };
+            (datePicker, yy, mm, dd) -> {
+                mYear = yy;
+                mMonth = mm;
+                mDay = dd;
+            };
 
 
    /*

@@ -9,6 +9,10 @@ import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carnation1.Client.ServerConnection;
+
+import org.json.simple.JSONObject;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,6 +31,7 @@ public class DatePickerActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_date_picker);
         Calendar calendar = new GregorianCalendar();
+
 
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
@@ -63,6 +68,17 @@ public class DatePickerActivity extends AppCompatActivity {
         intent.putExtra("mMin", Integer.toString(mMin));
        // String msg = intent.getStringExtra("mYear");
 
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("type", "reservation");
+        jsonObject.put("year", Integer.toString(mYear));
+        jsonObject.put("month", Integer.toString(mMonth));
+        jsonObject.put("day", Integer.toString(mDay));
+        jsonObject.put("hour", Integer.toString(mHour));
+        //jsonObject.put("min", Integer.toString(mMin));
+        jsonObject.put("sessionNumber",ServerConnection.sessionNumber);
+        jsonObject.put("userNumber",ServerConnection.userNumber);
+        jsonObject = ServerConnection.send(jsonObject);
         startActivity(intent);
         setResult(RESULT_OK, intent);
        // finish();

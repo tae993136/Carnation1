@@ -25,6 +25,8 @@ public class ServerConnection {
     private static final String SESSION_NUMBER = "sessionNumber";
     private static final String USER_NUMBER = "userNumber";
     private static Socket socket;
+    private static InputStream is;
+    private static OutputStream os;
     public static long sessionNumber;
     public static String userNumber;
 
@@ -48,6 +50,8 @@ public class ServerConnection {
             protected Boolean doInBackground(Void... voids) {
                 try {
                     socket.connect(new InetSocketAddress(IP, PORT));
+                    os = socket.getOutputStream();
+                    is = socket.getInputStream();
                 } catch (IOException e) {
                     e.printStackTrace();
                     return false;
@@ -86,19 +90,17 @@ public class ServerConnection {
                     return null;
                 Log.d("#ServerConnection", data[0].toJSONString());
                 try {
-                    OutputStream os = socket.getOutputStream();
                     os.write(data[0].toJSONString().getBytes(StandardCharsets.UTF_8));
                     os.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                     return null;
                 }
-
                 try {
-                    byte[] buffer = new byte[1024];
-                    InputStream is = socket.getInputStream();
+                    byte[] buffer = new byte[1000];
+                    String message;
                     int len = is.read(buffer);
-                    String message = new String(buffer, 0, len, StandardCharsets.UTF_8);
+                    message = new String(buffer, 0, len, StandardCharsets.UTF_8);
                     Log.d("#ServerConnection", "Recieved " + message);
                     return (JSONObject) new JSONParser().parse(message);
                 } catch (IOException | ParseException e) {

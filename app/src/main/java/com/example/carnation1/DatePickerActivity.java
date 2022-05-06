@@ -28,8 +28,6 @@ public class DatePickerActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_date_picker);
         Calendar calendar = new GregorianCalendar();
 
@@ -68,7 +66,7 @@ public class DatePickerActivity extends AppCompatActivity {
        // String msg = intent.getStringExtra("mYear");
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("parkingSpot",parkingSpot);
+        jsonObject.put("parkingSpot",getIntent().getStringExtra("parkingSpot"));
         jsonObject.put("type", "reservation");
         jsonObject.put("year", Integer.toString(mYear));
         jsonObject.put("month", Integer.toString(mMonth));

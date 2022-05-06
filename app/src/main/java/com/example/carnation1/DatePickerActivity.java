@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,7 @@ import java.util.GregorianCalendar;
 
 public class DatePickerActivity extends AppCompatActivity {
     public static final String TAG_MSG = "message";
-    private TextView textView;
+
      int mHour = 0, mMin = 0;
      int mYear = 0, mMonth = 0, mDay = 0;
 
@@ -28,21 +27,25 @@ public class DatePickerActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_date_picker);
         Calendar calendar = new GregorianCalendar();
-        textView = findViewById(R.id.textView);
 
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
         mHour = calendar.get(Calendar.HOUR_OF_DAY);
         mMin = calendar.get(Calendar.MINUTE);
-        textView = findViewById(R.id.textView);
 
-        TimePicker timePicker = findViewById(R.id.TimePicker);
-
-
+        TimePicker timePicker = (TimePicker) findViewById(R.id.vTimePicker);
+        timePicker.setHour(mHour);
+        timePicker.setMinute(mMin);
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                mHour = i;
+                mMin = i1;
+            }
+        });
         DatePicker datePicker = findViewById(R.id.vDatePicker);
         datePicker.init(mYear, mMonth, mDay, mOnDateChangedListener);
-
 
 
 
@@ -61,7 +64,7 @@ public class DatePickerActivity extends AppCompatActivity {
        // String msg = intent.getStringExtra("mYear");
 
         startActivity(intent);
-        //setResult(RESULT_OK, intent);
+        setResult(RESULT_OK, intent);
        // finish();
     }
 
@@ -78,6 +81,8 @@ public class DatePickerActivity extends AppCompatActivity {
         }
 
     };
+
+
    /*
    @Override
 

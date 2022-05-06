@@ -14,7 +14,7 @@
         android:datePickerMode="spinner" />
 
     <TimePicker
-        android:id="@+id/TimePicker"
+        android:id="@+id/vTimePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"

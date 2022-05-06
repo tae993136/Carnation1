@@ -44,9 +44,9 @@ public class DatePickerActivity extends AppCompatActivity {
         timePicker.setMinute(mMin);
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
-            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                mHour = i;
-                mMin = i1;
+            public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
+                mHour = hour;
+                mMin = minute;
             }
         });
         DatePicker datePicker = findViewById(R.id.vDatePicker);

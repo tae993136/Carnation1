@@ -6,27 +6,27 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Mainscreen extends AppCompatActivity {
+public class MainScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
-        Button button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.parkingScreen_BackButton);
         Button parking_Button = (Button)findViewById(R.id.parking_button);
-        Button mypage_button = (Button) findViewById(R.id.mypage_button);
+        Button mypage_button = (Button) findViewById(R.id.myPage_button);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(Mainscreen.this,MainActivity.class);
+            Intent intent = new Intent(MainScreen.this,MainActivity.class);
             startActivity(intent);
         });
         //todo
         parking_Button.setOnClickListener(v -> {
-            Intent intent = new Intent(Mainscreen.this,ParkingScreen.class);
+            Intent intent = new Intent(MainScreen.this,ParkingScreen.class);
             startActivity(intent);
         });
 
         mypage_button.setOnClickListener(v -> {
-            Intent intent = new Intent(Mainscreen.this,Mypage.class);
+            Intent intent = new Intent(MainScreen.this, MyPage.class);
             startActivity(intent);
         });
 

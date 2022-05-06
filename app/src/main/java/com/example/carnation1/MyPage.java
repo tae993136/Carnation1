@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.carnation1.DatePickerActivity;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Mypage extends AppCompatActivity {
+public class MyPage extends AppCompatActivity {
     private TextView textView;
 
     @Override
@@ -27,10 +25,10 @@ public class Mypage extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
         textView.setText(msg);
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.parkingScreen_BackButton);
 
         button.setOnClickListener(v -> {
-            Intent intent1 = new Intent(Mypage.this, Mainscreen.class);
+            Intent intent1 = new Intent(MyPage.this, MainScreen.class);
             startActivity(intent1);
         });
     }

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             else if (response.containsKey("result") && response.get("result").equals("OK")) {
                 ServerConnection.sessionNumber = (long) response.get("sessionNumber");
                 ServerConnection.userNumber = response.get("userNumber").toString();
-                startActivity(new Intent(this, Mainscreen.class));
+                startActivity(new Intent(this, MainScreen.class));
             } else {
                 Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
             }

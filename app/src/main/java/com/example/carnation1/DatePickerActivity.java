@@ -3,7 +3,6 @@ package com.example.carnation1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
@@ -56,7 +55,7 @@ public class DatePickerActivity extends AppCompatActivity {
 
 
     public void mOnClick(View v) {
-        Intent intent = new Intent(DatePickerActivity.this,Mypage.class);
+        Intent intent = new Intent(DatePickerActivity.this, MyPage.class);
         parkingSpot = intent.getStringExtra("parkingSpot");
         intent.putExtra("mYear",Integer.toString(mYear));
         intent.putExtra("mMonth",Integer.toString(mMonth));

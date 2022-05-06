@@ -16,13 +16,13 @@
             android:name=".DatePickerActivity"
             android:exported="false" />
         <activity
-            android:name=".Mypage"
+            android:name=".MyPage"
             android:exported="false" />
         <activity
             android:name=".ParkingScreen"
             android:exported="false" />
         <activity
-            android:name=".Mainscreen"
+            android:name=".MainScreen"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

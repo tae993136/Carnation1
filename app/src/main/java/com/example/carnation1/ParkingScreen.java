@@ -1,10 +1,7 @@
 package com.example.carnation1;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.simple.JSONObject;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 public class ParkingScreen extends AppCompatActivity {
@@ -24,7 +20,7 @@ public class ParkingScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_screen);
-        Button button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.parkingScreen_BackButton);
         Vector<ImageButton> parkingButtons = new Vector<>(8);
         parkingButtons.add(findViewById(R.id.parking_button1));
         parkingButtons.add(findViewById(R.id.parking_button2));
@@ -36,7 +32,7 @@ public class ParkingScreen extends AppCompatActivity {
         parkingButtons.add(findViewById(R.id.parking_button8));
 
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(ParkingScreen.this, Mainscreen.class);
+            Intent intent = new Intent(ParkingScreen.this, MainScreen.class);
             startActivity(intent);
         });
         parkingSpot = view -> {

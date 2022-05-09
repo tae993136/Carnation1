@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="뒤로가기"
-        android:textColor="#FFBF00"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +32,6 @@
         android:layout_width="108dp"
         android:layout_height="75dp"
         android:text="마이페이지"
-        android:textColor="#FFBF00"
         app:layout_constraintLeft_toLeftOf="@id/parking_image"
         app:layout_constraintTop_toBottomOf="@id/parking_image" />
 
@@ -43,7 +41,6 @@
         android:layout_height="75dp"
         android:gravity="center"
         android:text="주차 현황"
-        android:textColor="#FFBF00"
         app:layout_constraintRight_toRightOf="@id/parking_image"
         app:layout_constraintTop_toBottomOf="@id/parking_image" />
 

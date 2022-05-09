@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
      */
     EditText idText;
     EditText pwText;
-    Button button;
+    Button buttonLogin;
     boolean isBackPressed = false;
 
     @Override
@@ -30,18 +30,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         idText = (EditText) findViewById(R.id.idText);
         pwText = (EditText) findViewById(R.id.pwText);
-        button = (Button) findViewById(R.id.buttonLogin);
-        if (ServerConnection.connect())
-            Log.d("#MainActivity", "Connected to server");
+        buttonLogin = (Button) findViewById(R.id.buttonLogin);
         findViewById(R.id.main_loadingScreen).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 return true;
             }
         });
-        button.setOnClickListener(v -> {
+        View.OnClickListener loginListener = v -> {
             setLoadingScreen(true);
-
+            if (v.getId() == R.id.buttonLogin) {
+                if (ServerConnection.connect())
+                    Log.d("#MainActivity", "Connected to server");
+                else {
+                    Log.d("#MainActivity", "Error: Connection Failed");
+                    Toast.makeText(this, "서버 연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            } else if (v.getId() == R.id.buttonLoginLocalhost)
+                ServerConnection.connectToLocalhost();
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", "login");
             jsonObject.put("id", idText.getText().toString());
@@ -58,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+        buttonLogin.setOnClickListener(loginListener);
+        findViewById(R.id.buttonLoginLocalhost).setOnClickListener(loginListener);
     }
 
     @Override

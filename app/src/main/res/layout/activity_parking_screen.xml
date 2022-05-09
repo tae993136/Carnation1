@@ -20,8 +20,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="뒤로가기"
-            android:textColor="#FFBF00"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/parkingScreen_Refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새로고침"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -34,23 +41,23 @@
         android:text="주차장 현황"
         android:textSize="30sp"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintTop_toBottomOf="@id/parkingScreen_TopBar"/>
+        app:layout_constraintTop_toBottomOf="@id/parkingScreen_TopBar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parkingScreen_parkingLotArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background=""
+        android:background="#ffffff"
         app:layout_constraintTop_toBottomOf="@id/parkingScreen_title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/parkingScreen_Pillar"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintWidth_percent="0.2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,102 +71,32 @@
                 app:layout_constraintWidth_percent="0.8" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageButton
-            android:id="@+id/parking_button1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_left"
-            android:contentDescription="주차 칸 1번"
-            android:tag="1"
-            app:layout_constraintDimensionRatio="2.5"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/parkingScreen_Pillar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/parking_button2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_left"
-            android:contentDescription="주차 칸 2번"
-            android:tag="2"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/parkingScreen_Pillar"
-            app:layout_constraintTop_toBottomOf="@id/parking_button1" />
+            <ListView
+                android:id="@+id/parking_List_Left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageButton
-            android:id="@+id/parking_button3"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_left"
-            android:contentDescription="주차 칸 3번"
-            android:tag="3"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/parkingScreen_Pillar"
-            app:layout_constraintTop_toBottomOf="@id/parking_button2" />
-
-        <ImageButton
-            android:id="@+id/parking_button4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_left"
-            android:contentDescription="주차 칸 4번"
-            android:tag="4"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/parkingScreen_Pillar"
-            app:layout_constraintTop_toBottomOf="@id/parking_button3" />
-
-        <ImageButton
-            android:id="@+id/parking_button5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_right"
-            android:contentDescription="주차 칸 5번"
-            android:tag="5"
-            app:layout_constraintDimensionRatio="2.5"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/parkingScreen_Pillar"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/parking_button6"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_right"
-            android:contentDescription="주차 칸 6번"
-            android:tag="6"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toRightOf="@id/parkingScreen_Pillar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/parking_button5" />
-
-        <ImageButton
-            android:id="@+id/parking_button7"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_right"
-            android:contentDescription="주차 칸 7번"
-            android:tag="7"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toRightOf="@id/parkingScreen_Pillar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/parking_button6" />
-
-        <ImageButton
-            android:id="@+id/parking_button8"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/parking_lot_right"
-            android:contentDescription="주차 칸 8번"
-            android:tag="8"
-            app:layout_constraintDimensionRatio="2.5"
-            app:layout_constraintLeft_toRightOf="@id/parkingScreen_Pillar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/parking_button7" />
+            <ListView
+                android:id="@+id/parking_List_Right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

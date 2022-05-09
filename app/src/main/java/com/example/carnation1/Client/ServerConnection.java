@@ -19,7 +19,7 @@ import java.util.concurrent.TimeoutException;
 
 public class ServerConnection {
     private static final ServerConnection instance = new ServerConnection();
-    private static final String IP = "34.132.25.146";
+    private static final String IP = "34.68.12.173";
     private static final int PORT = 7030;
     private static final String TYPE = "type";
     private static final String SESSION_NUMBER = "sessionNumber";
@@ -41,7 +41,7 @@ public class ServerConnection {
         return instance;
     }
 
-    public static Boolean connect() {
+    private static Boolean connect(String ip) {
         if (socket == null) socket = new Socket();
         if (socket.isConnected() && !socket.isClosed())
             return true;
@@ -49,7 +49,7 @@ public class ServerConnection {
             @Override
             protected Boolean doInBackground(Void... voids) {
                 try {
-                    socket.connect(new InetSocketAddress(IP, PORT));
+                    socket.connect(new InetSocketAddress(ip, PORT));
                     os = socket.getOutputStream();
                     is = socket.getInputStream();
                 } catch (IOException e) {
@@ -73,6 +73,14 @@ public class ServerConnection {
         return result;
     }
 
+    public static boolean connectToLocalhost() {
+        return connect("127.0.0.1");
+    }
+
+    public static Boolean connect() {
+        return connect(IP);
+    }
+
     public static void disconnect() {
         if (!socket.isClosed()) {
             try {
@@ -86,7 +94,7 @@ public class ServerConnection {
         AsyncTask<JSONObject, Void, JSONObject> sender = new AsyncTask<JSONObject, Void, JSONObject>() {
             @Override
             protected JSONObject doInBackground(JSONObject... data) {
-                if (socket.isClosed())
+                if (socket == null || socket.isClosed())
                     return null;
                 Log.d("#ServerConnection", data[0].toJSONString());
                 try {

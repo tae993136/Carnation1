@@ -19,12 +19,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:timePickerMode="spinner" />
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
     <Button
         android:id="@+id/vDateEnter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="mOnClick"
+        android:onClick="sendReservation"
         android:text="확인" />
 
 </LinearLayout>

@@ -12,7 +12,7 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
-        Button button = (Button) findViewById(R.id.parkingScreen_BackButton);
+        Button button = (Button) findViewById(R.id.myPage_BackButton);
         Button parking_Button = (Button)findViewById(R.id.parking_button);
         Button mypage_button = (Button) findViewById(R.id.myPage_button);
         button.setOnClickListener(v -> {

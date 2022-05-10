@@ -52,7 +52,7 @@ public class DatePickerActivity extends AppCompatActivity {
     }
 
 
-    public void mOnClick(View v) {
+    public void sendReservation(View v) {
         Intent intent = new Intent(DatePickerActivity.this, MyPage.class);
         parkingSpot = intent.getStringExtra("parkingSpot");
         intent.putExtra("mYear", Integer.toString(mYear));

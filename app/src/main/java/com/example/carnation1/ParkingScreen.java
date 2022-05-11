@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 
 public class ParkingScreen extends AppCompatActivity {
 
+    protected static final int RESULT_CODE_DATEPICKER = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,13 @@ public class ParkingScreen extends AppCompatActivity {
         });
         findViewById(R.id.parkingScreen_Refresh).setOnClickListener(v -> loadParkingLotStructure());
         loadParkingLotStructure();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode== RESULT_CODE_DATEPICKER && resultCode == RESULT_OK)
+            finish();
     }
 
     private void loadParkingLotStructure() {
@@ -120,7 +130,7 @@ public class ParkingScreen extends AppCompatActivity {
                 Intent intent = new Intent(ParkingScreen.this, DatePickerActivity.class);
                 intent.putExtra("parkingSpot", String.valueOf(itemData.number))
                 .putExtra("position", cellName);
-                startActivity(intent);
+                startActivityForResult(intent, RESULT_CODE_DATEPICKER);
             });
 
             return constraintLayout;

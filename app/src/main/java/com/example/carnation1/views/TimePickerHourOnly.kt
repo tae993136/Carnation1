@@ -23,13 +23,15 @@ class TimePickerHourOnly(context: Context, attrs: AttributeSet) : ConstraintLayo
 		val view = inflater.inflate(R.layout.timepicker_houronly, this, false)
 		numPickerAMPM = view.findViewById(R.id.timePicker_AMPM)
 		numPickerAMPM.minValue = 0
-		numPickerAMPM.maxValue = 1
-		numPickerAMPM.displayedValues = arrayOf("오전", "오후")
+		numPickerAMPM.maxValue = 3
+		numPickerAMPM.displayedValues = arrayOf("오전", "오후", "오전", "오후")
+		numPickerAMPM.wrapSelectorWheel = true
 		numPickerHour = view.findViewById(R.id.timePicker_Hour)
 		numPickerHour.minValue = 0
 		numPickerHour.maxValue = 11
 		numPickerHour.displayedValues =
 			arrayOf("12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")
+		numPickerHour.wrapSelectorWheel = true
 		numPickerHour.setOnValueChangedListener { _, oldVal, newVal ->
 			if ((oldVal == 11 && newVal == 0) || (oldVal == 0 && newVal == 11))
 				numPickerAMPM.value = (numPickerAMPM.value + 1) % 2
@@ -38,7 +40,7 @@ class TimePickerHourOnly(context: Context, attrs: AttributeSet) : ConstraintLayo
 	}
 
 	fun getHour24(): Int {
-		return getHour() + numPickerAMPM.value * 12
+		return getHour() + numPickerAMPM.value % 2 * 12
 	}
 
 	fun getHour(): Int {
@@ -46,22 +48,22 @@ class TimePickerHourOnly(context: Context, attrs: AttributeSet) : ConstraintLayo
 	}
 
 	fun getAMPM(): AMPM {
-		return if (numPickerAMPM.value == 0) AMPM.AM else AMPM.PM
+		return if (numPickerAMPM.value % 2 == 0) AMPM.AM else AMPM.PM
 	}
 
 	fun getDate(): Date {
 		return Calendar.Builder().setTimeOfDay(getHour24(), 0, 0).build().time
 	}
 
-	fun setHour24(hour: UInt) {
-		assert(hour < 24U)
-		numPickerHour.value = (hour % 12U).toInt()
-		numPickerAMPM.value = if (hour >= 12U) 1 else 0
+	fun setHour24(hour: Int) {
+		assert(hour in 0..23)
+		numPickerHour.value = hour % 12
+		numPickerAMPM.value = if (hour >= 12) 1 else 0
 	}
 
-	fun setHour(hour: UInt) {
-		assert(hour < 12U)
-		numPickerHour.value = hour.toInt()
+	fun setHour(hour: Int) {
+		assert(hour in 0..11)
+		numPickerHour.value = hour
 	}
 
 	fun setAMPM(value: AMPM) {

@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:ignore="HardcodedText">
 
-    <DatePicker
-        android:id="@+id/vDatePicker"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/datePicker_TopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/datePicker_BackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="뒤로가기"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <DatePicker
+        android:id="@+id/datePicket_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:calendarViewShown="false"
-        android:datePickerMode="spinner" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datePicker_TopBar" />
 
     <com.example.carnation1.views.TimePickerHourOnly
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/datePicker_Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datePicket_Date" />
 
     <Button
         android:id="@+id/vDateEnter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="sendReservation"
-        android:text="확인" />
+        android:text="확인"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

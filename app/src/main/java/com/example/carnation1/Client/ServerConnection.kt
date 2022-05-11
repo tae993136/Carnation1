@@ -111,6 +111,7 @@ object ServerConnection {
 					}
 				}
 			}
+		if (!data.containsKey(TYPE)) throw TypeNotPresentException("type", Throwable("JSON objet \"type\" is not included"))
 		if (!data.containsKey(SESSION_NUMBER)) data[SESSION_NUMBER] = sessionNumber
 		if (!data.containsKey(USER_NUMBER)) data[USER_NUMBER] = userNumber
 		sender.execute(data)

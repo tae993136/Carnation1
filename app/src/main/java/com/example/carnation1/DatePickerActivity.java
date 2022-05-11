@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,15 +35,6 @@ public class DatePickerActivity extends AppCompatActivity {
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
         mHour = calendar.get(Calendar.HOUR_OF_DAY);
         mMin = calendar.get(Calendar.MINUTE);
-
-
-        TimePicker timePicker = findViewById(R.id.vTimePicker);
-        timePicker.setHour(mHour);
-        timePicker.setMinute(mMin);
-        timePicker.setOnTimeChangedListener((timePicker1, hour, minute) -> {
-            mHour = hour;
-            mMin = minute;
-        });
         DatePicker datePicker = findViewById(R.id.vDatePicker);
         datePicker.init(mYear, mMonth, mDay, mOnDateChangedListener);
 

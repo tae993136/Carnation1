@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/myPage_BackButton"
+            android:id="@+id/management_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

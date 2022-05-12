@@ -36,7 +36,8 @@ object ServerConnection {
 		val connector: AsyncTask<Void?, Void?, Boolean> =
 			@SuppressLint("StaticFieldLeak")
 			object : AsyncTask<Void?, Void?, Boolean>() {
-				protected override fun doInBackground(vararg params: Void?): Boolean? {
+				@Deprecated("Deprecated in Java")
+				override fun doInBackground(vararg params: Void?): Boolean? {
 					try {
 						socket!!.connect(InetSocketAddress(ip, PORT))
 						os = socket!!.getOutputStream()
@@ -87,7 +88,8 @@ object ServerConnection {
     fun send(data: JSONObject): JSONObject? {
 		val sender: AsyncTask<JSONObject?, Void?, JSONObject?> =
 			object : AsyncTask<JSONObject?, Void?, JSONObject?>() {
-				protected override fun doInBackground(vararg data: JSONObject?): JSONObject? {
+				@Deprecated("Deprecated in Java")
+				override fun doInBackground(vararg data: JSONObject?): JSONObject? {
 					if (socket == null || socket!!.isClosed) return null
 					Log.d("#ServerConnection", data[0]?.toJSONString() ?: "")
 					try {

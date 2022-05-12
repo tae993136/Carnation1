@@ -79,7 +79,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ListView
-                android:id="@+id/parking_List_Left"
+                android:id="@+id/parkingLotView_List_Left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +93,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ListView
-                android:id="@+id/parking_List_Right"
+                android:id="@+id/parkingLotView_List_Right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent" />

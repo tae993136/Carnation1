@@ -49,8 +49,8 @@ public class ParkingScreen extends AppCompatActivity {
     }
 
     private void loadParkingLotStructure() {
-        ListView listViewLeft = findViewById(R.id.parking_List_Left);
-        ListView listViewRight = findViewById(R.id.parking_List_Right);
+        ListView listViewLeft = findViewById(R.id.parkingLotView_List_Left);
+        ListView listViewRight = findViewById(R.id.parkingLotView_List_Right);
         ParkingLotListAdapter adapterLeft = new ParkingLotListAdapter(this, "L");
         ParkingLotListAdapter adapterRight = new ParkingLotListAdapter(this, "R");
         JSONObject jsonObject = new JSONObject();
@@ -119,8 +119,8 @@ public class ParkingScreen extends AppCompatActivity {
             }
             ConstraintLayout constraintLayout = (ConstraintLayout) convertView;
             ItemData itemData = arrayList.get(position);
-            ImageButton imageButton = constraintLayout.findViewById(R.id.parkingLot_Item_Image_Left);
-            TextView textView = constraintLayout.findViewById(R.id.parkingLot_Item_Text_Left);
+            ImageButton imageButton = constraintLayout.findViewById(R.id.parkingLot_Item_Image);
+            TextView textView = constraintLayout.findViewById(R.id.parkingLot_Item_Text);
 
             imageButton.setImageResource(itemData.getDirection().equals("L") ? R.drawable.parking_lot_left : R.drawable.parking_lot_right);
             textView.setText(String.valueOf(itemData.getNumber()));

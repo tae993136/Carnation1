@@ -2,8 +2,13 @@ package com.example.carnation1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.carnation1.Client.ServerConnection;
+
+import org.json.simple.JSONObject;
 
 public class MyPage extends AppCompatActivity {
 
@@ -19,5 +24,10 @@ public class MyPage extends AppCompatActivity {
         String msg_Hour = intent.getStringExtra("mHour") + "시 ";
         String msg_Minute = intent.getStringExtra("mMin") + "분";
         String msg = msg_Year + msg_Month + msg_Day + msg_Hour + msg_Minute;
+
+        org.json.simple.JSONObject jsonObject = new JSONObject();
+        jsonObject.put("type", "mypage");
+        ((TextView)findViewById(R.id.myPage_Debug)).setText(ServerConnection.send(jsonObject).toJSONString());
+
     }
 }

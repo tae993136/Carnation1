@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/myPage_TextReservationInfo_Status"
+                    android:id="@+id/management_TextReservationInfo_Status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="예약 없음"
@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/management_LayoutReservationInfo_Position"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
@@ -81,6 +82,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     />
                 <TextView
+                    android:id="@+id/management_TextReservationInfo_Position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0열 0칸"
@@ -97,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/myPage_ContentsRow1"
+                android:id="@+id/management_LayoutReservationInfo_DateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
@@ -113,7 +115,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/myPage_TextReservationInfo_DateTime"
+                    android:id="@+id/management_TextReservationInfo_DateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center|right"
@@ -134,7 +136,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/Reservation_button"
+        android:id="@+id/management_CancelReservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

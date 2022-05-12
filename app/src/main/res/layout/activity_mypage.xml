@@ -71,7 +71,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/Reservation_button"
+        android:id="@+id/myPage_Reservation_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -84,6 +84,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="사용권 관리"
-        app:layout_constraintBottom_toTopOf="@id/Reservation_button" />
+        app:layout_constraintBottom_toTopOf="@id/myPage_Reservation_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

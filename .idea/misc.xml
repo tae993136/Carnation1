@@ -6,20 +6,24 @@
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_date_picker.xml" value="0.36614583333333334" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_mainscreen.xml" value="0.1875" />
-        <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_management.xml" value="0.36614583333333334" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/activity_parking_screen.xml" value="0.1875" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/parkinglot_list_item.xml" value="0.14947916666666666" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/parkinglot_list_item_left.xml" value="0.1875" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/parkinglot_list_item_right.xml" value="0.15260416666666668" />
-        <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/parkinglot_view.xml" value="0.273828125" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/sample_time_picker_hour_only.xml" value="0.36614583333333334" />
         <entry key="..\:/HRD_PROJECT/Git/Android/Carnation1/app/src/main/res/layout/timepicker_houronly.xml" value="0.3651041666666667" />
         <entry key="..\:/Study/AndroidStudioProjects/Carnation1/app/src/main/res/layout/activity_date_picker.xml" value="0.36614583333333334" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_date_picker.xml" value="0.35833333333333334" />
         <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_mainscreen.xml" value="0.2796296296296296" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_management.xml" value="0.2814814814814815" />
         <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_mypage.xml" value="0.1" />
         <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_parking_screen.xml" value="0.36614583333333334" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/activity_reservation_management.xml" value="0.36614583333333334" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/parkinglot_list_item_left.xml" value="0.35833333333333334" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/parkinglot_list_item_right.xml" value="0.35833333333333334" />
+        <entry key="..\:/Study/android/Carnation1/app/src/main/res/layout/timepicker_houronly.xml" value="0.1875" />
       </map>
     </option>
   </component>

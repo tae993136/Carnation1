@@ -2,6 +2,7 @@ package com.example.carnation1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,5 +30,8 @@ public class MyPage extends AppCompatActivity {
         jsonObject.put("type", "mypage");
         ((TextView)findViewById(R.id.myPage_Debug)).setText(ServerConnection.send(jsonObject).toJSONString());
 
+        ((Button)findViewById(R.id.myPage_Reservation_button)).setOnClickListener((view)->{
+            startActivity(new Intent(this, management.class));
+        });
     }
 }

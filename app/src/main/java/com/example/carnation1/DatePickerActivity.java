@@ -59,7 +59,7 @@ public class DatePickerActivity extends AppCompatActivity {
         jsonObject.put("parkingSpot", getIntent().getStringExtra("parkingSpot"));
         jsonObject.put("type", "reservation");
         jsonObject.put("year", Integer.toString(timeForReservation.get(Calendar.YEAR)));
-        jsonObject.put("month", Integer.toString(timeForReservation.get(Calendar.MONTH)));
+        jsonObject.put("month", Integer.toString(timeForReservation.get(Calendar.MONTH)+1));
         jsonObject.put("day", Integer.toString(timeForReservation.get(Calendar.DAY_OF_MONTH)));
         jsonObject.put("hour", Integer.toString(timeForReservation.get(Calendar.HOUR_OF_DAY)));
         jsonObject.put("sessionNumber", ServerConnection.sessionNumber);

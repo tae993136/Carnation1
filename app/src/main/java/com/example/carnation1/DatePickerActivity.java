@@ -59,7 +59,7 @@ public class DatePickerActivity extends AppCompatActivity {
         jsonObject.put("parkingSpot", getIntent().getStringExtra("parkingSpot"));
         jsonObject.put("type", "reservation");
         jsonObject.put("year", Integer.toString(timeForReservation.get(Calendar.YEAR)));
-        jsonObject.put("month", Integer.toString(timeForReservation.get(Calendar.MONTH)+1));
+        jsonObject.put("month", Integer.toString(timeForReservation.get(Calendar.MONTH) + 1));
         jsonObject.put("day", Integer.toString(timeForReservation.get(Calendar.DAY_OF_MONTH)));
         jsonObject.put("hour", Integer.toString(timeForReservation.get(Calendar.HOUR_OF_DAY)));
         jsonObject.put("sessionNumber", ServerConnection.sessionNumber);
@@ -69,6 +69,8 @@ public class DatePickerActivity extends AppCompatActivity {
             Toast.makeText(this, "예약 완료", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
             finish();
+        } else if (result.get("data").toString().equals("Another active reservation exists")) {
+            Toast.makeText(this, "이미 예약된 기록이 있습니다.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "서버와의 연결이 원활하지 않습니다. 나중에 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
         }

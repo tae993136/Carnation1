@@ -22,7 +22,6 @@
         android:id="@+id/myPage_BackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="뒤로가기"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,7 +31,6 @@
         android:id="@+id/myPage_button"
         android:layout_width="108dp"
         android:layout_height="75dp"
-        android:background="@drawable/button_outline"
         android:text="마이페이지"
         app:layout_constraintLeft_toLeftOf="@id/parking_image"
         app:layout_constraintTop_toBottomOf="@id/parking_image" />
@@ -41,7 +39,6 @@
         android:id="@+id/parking_button"
         android:layout_width="108dp"
         android:layout_height="75dp"
-        android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="주차 현황"
         app:layout_constraintRight_toRightOf="@id/parking_image"

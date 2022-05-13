@@ -17,7 +17,6 @@
             android:id="@+id/myPage_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_outline"
             android:gravity="center"
             android:text="뒤로가기"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -76,7 +75,6 @@
         android:id="@+id/User_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="사용권 관리"
         app:layout_constraintBottom_toTopOf="@id/myPage_Reservation_button" />
@@ -85,7 +83,6 @@
         android:id="@+id/myPage_Reservation_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="예약 관리"
         app:layout_constraintBottom_toBottomOf="parent" />

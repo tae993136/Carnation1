@@ -16,39 +16,50 @@
             android:id="@+id/datePicker_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_outline"
             android:gravity="center"
             android:text="뒤로가기"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <DatePicker
-        android:id="@+id/datePicket_Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/datePicker_TopBar" />
-
-    <com.example.carnation1.views.TimePickerHourOnly
-        android:id="@+id/datePicker_Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/datePicket_Date" />
-
-    <Button
-        android:id="@+id/vDateEnter"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_outline"
-        android:onClick="sendReservation"
-        android:text="확인"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/datePicket_Date"
-        app:layout_constraintRight_toRightOf="@id/datePicket_Date" />
+        app:layout_constraintTop_toBottomOf="@id/datePicker_TopBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주차 예약"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <DatePicker
+                android:id="@+id/datePicket_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false" />
+
+            <com.example.carnation1.views.TimePickerHourOnly
+                android:id="@+id/datePicker_Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/vDateEnter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="sendReservation"
+                android:text="확인" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

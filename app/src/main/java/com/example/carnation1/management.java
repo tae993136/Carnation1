@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -14,6 +15,7 @@ import com.example.carnation1.Client.ServerConnection;
 import org.json.simple.JSONObject;
 
 public class management extends AppCompatActivity {
+    View reservationInfoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +32,38 @@ public class management extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         });
+        reservationInfoView = findViewById(R.id.management_ReservationInfo);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("type", "mypage");
         JSONObject jsonResult = ServerConnection.send(jsonObject);
         boolean isReservationExists = Integer.parseInt(jsonResult.get("reservationCount").toString()) > 0;
-        ((TextView) findViewById(R.id.management_TextReservationInfo_Status)).setText(
+        ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Status)).setText(
                 isReservationExists ? "예약 중" : "예약 없음");
         if (isReservationExists) {
+            ((ImageView) reservationInfoView.findViewById(R.id.parkingLotReservationView_thumbnail)).setImageResource(R.drawable.reservation_ok);
             String positionReserved = jsonResult.get("position").toString();
-            ((TextView) findViewById(R.id.management_TextReservationInfo_Position))
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Position))
                     .setText(String.format("%c열 %s칸", positionReserved.charAt(0), positionReserved.substring(1)));
-            ((TextView) findViewById(R.id.management_TextReservationInfo_DateTime)).setText(
-                    String.format("%s년 %s월 %s일 %s %s시",
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Date)).setText(
+                    String.format("%s년 %s월 %s일",
                             jsonResult.get("year").toString(),
                             jsonResult.get("month").toString(),
-                            jsonResult.get("day").toString(),
-                            Integer.parseInt(jsonResult.get("hour").toString()) > 11 ? "오후" : "오전",
-                            jsonResult.get("hour").toString()
+                            jsonResult.get("day").toString()
+                    ));
+            int hour = Integer.parseInt(jsonResult.get("hour").toString());
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Time)).setText(
+                    String.format("%s %s시 ~ %s %s시",
+                            hour > 11 ? "오후" : "오전",
+                            hour % 12 == 0 ? 12 : hour % 12,
+                            hour + 1 > 11 ? "오후" : "오전",
+                            (hour + 1) % 12 == 0 ? 12 : (hour + 1) % 12
                     ));
         } else {
-            findViewById(R.id.management_LayoutReservationInfo_Position).setVisibility(View.GONE);
-            findViewById(R.id.management_LayoutReservationInfo_DateTime).setVisibility(View.GONE);
+            ((ImageView) reservationInfoView.findViewById(R.id.parkingLotReservationView_thumbnail)).setImageResource(R.drawable.reservation_no);
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Position)).setText("");
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Date)).setText("");
+            ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Time)).setText("");
         }
     }
 }

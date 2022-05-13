@@ -75,24 +75,24 @@
                 android:id="@+id/idText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:autofillHints="username"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.8"
-                android:autofillHints="username"
                 tools:ignore="LabelFor" />
 
             <EditText
                 android:id="@+id/pwText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:autofillHints="password"
                 android:inputType="textWebPassword"
                 android:maxLines="1"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/idText"
                 app:layout_constraintWidth_percent="0.8"
-                android:autofillHints="password"
                 tools:ignore="LabelFor" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -100,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/button_outline"
                 android:text="로그인"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -109,14 +110,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/buttonLoginLocalhost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:text="로그인 Localhost"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

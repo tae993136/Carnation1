@@ -17,6 +17,7 @@
             android:id="@+id/management_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_outline"
             android:gravity="center"
             android:text="뒤로가기"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -38,16 +39,17 @@
                 android:id="@+id/management_ReservationInfo"
                 layout="@layout/parkinglot_reservation_view" />
 
+            <Button
+                android:id="@+id/management_CancelReservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/button_outline"
+                android:gravity="center"
+                android:text="예약 취소" />
         </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/management_CancelReservation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="예약 취소"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

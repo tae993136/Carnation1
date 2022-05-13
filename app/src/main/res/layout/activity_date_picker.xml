@@ -16,6 +16,7 @@
             android:id="@+id/datePicker_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_outline"
             android:gravity="center"
             android:text="뒤로가기"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -41,10 +42,13 @@
 
     <Button
         android:id="@+id/vDateEnter"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_outline"
         android:onClick="sendReservation"
         android:text="확인"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/datePicket_Date"
+        app:layout_constraintRight_toRightOf="@id/datePicket_Date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

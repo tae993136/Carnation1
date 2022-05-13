@@ -15,5 +15,8 @@ public class MyPage extends AppCompatActivity {
         ((Button) findViewById(R.id.myPage_Reservation_button)).setOnClickListener((view) -> {
             startActivity(new Intent(this, management.class));
         });
+        ((Button) findViewById(R.id.myPage_BackButton)).setOnClickListener((view) -> {
+            startActivity(new Intent(this, MainScreen.class));
+        });
     }
 }

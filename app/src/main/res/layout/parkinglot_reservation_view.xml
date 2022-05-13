@@ -33,6 +33,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/parkingLotReservationView_Row0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이용 상태"
@@ -44,7 +45,7 @@
                 android:id="@+id/parkingLotReservationView_Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 중"
+                android:text=""
                 android:textAlignment="viewEnd"
                 android:textSize="20sp"
                 app:layout_constraintRight_toRightOf="parent"
@@ -57,6 +58,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/parkingLotReservationView_Row1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이용 예정 시각"
@@ -90,6 +92,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/parkingLotReservationView_Row2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="주차 위치"

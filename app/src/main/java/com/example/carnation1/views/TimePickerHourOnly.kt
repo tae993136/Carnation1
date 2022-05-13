@@ -39,6 +39,11 @@ class TimePickerHourOnly(context: Context, attrs: AttributeSet) : ConstraintLayo
 		addView(view)
 	}
 
+	fun setOnValueChangeListener(listener: NumberPicker.OnValueChangeListener) {
+		numPickerAMPM.setOnValueChangedListener(listener)
+		numPickerHour.setOnValueChangedListener(listener)
+	}
+
 	fun getHour24(): Int {
 		return getHour() + numPickerAMPM.value % 2 * 12
 	}
@@ -56,14 +61,14 @@ class TimePickerHourOnly(context: Context, attrs: AttributeSet) : ConstraintLayo
 	}
 
 	fun setHour24(hour: Int) {
-		assert(hour in 0..23)
+		assert(hour in 0..24)
 		numPickerHour.value = hour % 12
 		numPickerAMPM.value = if (hour >= 12) 1 else 0
 	}
 
 	fun setHour(hour: Int) {
-		assert(hour in 0..11)
-		numPickerHour.value = hour
+		assert(hour in 0..12)
+		numPickerHour.value = hour % 12
 	}
 
 	fun setAMPM(value: AMPM) {

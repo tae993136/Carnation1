@@ -1,7 +1,6 @@
 package com.example.carnation1;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +24,7 @@ public class management extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management);
-        Button cancelButton = (Button) findViewById(R.id.management_CancelReservation);
+        Button cancelButton = findViewById(R.id.management_CancelReservation);
 
         findViewById(R.id.management_BackButton).setOnClickListener(v -> {
             Intent intent = new Intent(management.this, MyPage.class);
@@ -46,8 +45,7 @@ public class management extends AppCompatActivity {
                 JSONObject jsonResult = ServerConnection.send(jsonObject);
 
                 Toast.makeText(getBaseContext(), "취소가 완료되었습니다.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(management.this, MyPage.class);
-                startActivity(intent);
+                finish();
             });
             builder.setNegativeButton("아니오", null);
 
@@ -59,7 +57,7 @@ public class management extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("type", "mypage");
         JSONObject jsonResult = ServerConnection.send(jsonObject);
-        boolean isReservationExists = (int)jsonResult.get("reservationCount") > 0;
+        boolean isReservationExists = Long.parseLong(jsonResult.get("reservationCount").toString()) > 0L;
         if (isReservationExists) {
             switch (jsonResult.get("status").toString()) {
                 case "USING":
@@ -79,7 +77,7 @@ public class management extends AppCompatActivity {
                             jsonResult.get("month"),
                             jsonResult.get("day")
                     ));
-            int hour = (int) jsonResult.get("hour");
+            long hour = (long) jsonResult.get("hour");
             ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Time)).setText(
                     String.format("%s %d시 ~ %s %d시",
                             hour > 11 ? "오후" : "오전",

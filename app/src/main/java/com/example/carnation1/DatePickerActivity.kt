@@ -3,6 +3,8 @@ package com.example.carnation1
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -14,16 +16,16 @@ import java.time.Instant
 import java.util.*
 
 class DatePickerActivity : AppCompatActivity() {
-	private var contentsLayout: ViewAnimator? = null
-	private var datePicker: DatePicker? = null
-	private var timePicker: TimePickerHourOnly? = null
-	private var okButton: Button? = null
-	private var prevButton: Button? = null
-	private var nextButton: Button? = null
-	private var summaryStatus: TextView? = null
-	private var summaryDate: TextView? = null
-	private var summaryTime: TextView? = null
-	private var summaryPosition: TextView? = null
+	private lateinit var contentsLayout: ViewAnimator
+	private lateinit var datePicker: DatePicker
+	private lateinit var timePicker: TimePickerHourOnly
+	private lateinit var prevButton: Button
+	private lateinit var nextButton: Button
+	private lateinit var okButton: Button
+	private lateinit var summaryStatus: TextView
+	private lateinit var summaryDate: TextView
+	private lateinit var summaryTime: TextView
+	private lateinit var summaryPosition: TextView
 	private var year = 0
 	private var month = 0
 	private var day = 0
@@ -33,67 +35,85 @@ class DatePickerActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_date_picker)
+
 		contentsLayout = findViewById(R.id.datePicker_ContentsLayout)
-		val inAnim = AlphaAnimation(0f, 1f)
-		inAnim.duration = 500
-		val outAnim = AlphaAnimation(1f, 0f)
-		outAnim.duration = 500
-		contentsLayout?.inAnimation = inAnim
-		contentsLayout?.outAnimation = outAnim
 		datePicker = findViewById(R.id.datePicker_Date)
-		datePicker?.setMinDate(Instant.now().toEpochMilli())
-		datePicker?.setMaxDate(Instant.now().toEpochMilli() + 2592000000L)
 		timePicker = findViewById(R.id.datePicker_Time)
-		timePicker?.setHour24(GregorianCalendar()[Calendar.HOUR_OF_DAY] + 1)
-		okButton = findViewById(R.id.datePicker_OKbutton)
 		prevButton = findViewById(R.id.datePicker_PrevButton)
 		nextButton = findViewById(R.id.datePicker_NextButton)
+		okButton = findViewById(R.id.datePicker_OkButton)
 		summaryStatus = findViewById(R.id.parkingLotReservationView_Row0)
 		summaryDate = findViewById(R.id.parkingLotReservationView_Date)
 		summaryTime = findViewById(R.id.parkingLotReservationView_Time)
 		summaryPosition = findViewById(R.id.parkingLotReservationView_Position)
+
+		val inAnim = AlphaAnimation(0f, 1f)
+		inAnim.duration = 500
+		val outAnim = AlphaAnimation(1f, 0f)
+		outAnim.duration = 500
+		contentsLayout.inAnimation = inAnim
+		contentsLayout.outAnimation = outAnim
+		prevButton.setOnClickListener { goPrev() }
+		nextButton.setOnClickListener { goNext() }
+		okButton.setOnClickListener { sendReservation() }
+		datePicker.minDate = Instant.now().toEpochMilli()
+		datePicker.maxDate = Instant.now().toEpochMilli() + 2592000000L
+		datePicker.setOnDateChangedListener { _, _, _, _ -> goNext() }
+		timePicker.setHour24(GregorianCalendar()[Calendar.HOUR_OF_DAY] + 1)
 		(findViewById<View>(R.id.parkingLotReservationView_thumbnail) as ImageView).setImageResource(
 			R.drawable.parkingimage
 		)
-		summaryStatus?.text = "신청 검토 중"
-		summaryPosition?.text = String.format("%s번", intent.getStringExtra("parkingSpot"))
-		datePicker?.setOnDateChangedListener { _, _, _, _ -> goNext(null) }
+		summaryStatus.text = "신청 검토 중"
+		summaryPosition.text = String.format("%s번", intent.getStringExtra("parkingSpot"))
+
 	}
 
 	override fun onBackPressed() {
-		if (contentsLayout!!.displayedChild == 0) super.onBackPressed() else contentsLayout!!.showPrevious()
+		if (contentsLayout.displayedChild == 0) super.onBackPressed() else contentsLayout.showPrevious()
 	}
 
-	fun goPrev(view: View?) {
+	private fun goPrev() {
 		onBackPressed()
-		nextButton!!.visibility = View.VISIBLE
-		prevButton!!.text = if (contentsLayout!!.displayedChild == 0) "취소" else "이전"
+		onPageChanged()
 	}
 
-	@SuppressLint("DefaultLocale")
-	fun goNext(view: View?) {
-		year = datePicker!!.year
-		month = datePicker!!.month + 1
-		day = datePicker!!.dayOfMonth
-		summaryDate!!.text = String.format("%d년 %d월 %d일", year, month, day)
-		hour = timePicker!!.getHour24()
-		summaryTime!!.text = String.format(
+	private fun goNext() {
+		year = datePicker.year
+		month = datePicker.month + 1
+		day = datePicker.dayOfMonth
+		summaryDate.text = String.format("%d년 %d월 %d일", year, month, day)
+		hour = timePicker.getHour24()
+		summaryTime.text = String.format(
 			"%s %d시 ~ %s %d시",
 			if (hour < 12) "오전" else "오후",
 			if (hour == 0) 12 else hour,
 			if ((hour + 1) % 24 < 12) "오전" else "오후",
 			if ((hour + 1) % 24 == 0) 12 else (hour + 1) % 24
 		)
-		contentsLayout!!.showNext()
-		if (contentsLayout!!.displayedChild == 2) nextButton!!.visibility =
-			View.INVISIBLE else nextButton!!.visibility = View.VISIBLE
+		contentsLayout.showNext()
+		onPageChanged()
 	}
 
-	fun sendReservation(v: View?) {
+	private fun onPageChanged() {
+		when (contentsLayout.displayedChild) {
+			0 -> {
+				prevButton.text = "취소"
+			}
+			contentsLayout.childCount - 1 -> {
+				nextButton.visibility = GONE
+			}
+			else -> {
+				prevButton.text = "이전"
+				nextButton.visibility = VISIBLE
+			}
+		}
+	}
+
+	private fun sendReservation() {
 		val timeForReservation =
-			Calendar.Builder().setLocale(Locale.getDefault()).setDate(year, month, day)
+			Calendar.Builder().setTimeZone(TimeZone.getTimeZone("GMT+9")).setDate(year, month, day)
 				.setTimeOfDay(hour, 0, 0).build()
-		if (Instant.now().toEpochMilli() - timeForReservation.timeInMillis >= 0) {
+		if (timeForReservation.before(Calendar.Builder().setInstant(Instant.now().toEpochMilli()))) {
 			Toast.makeText(this, "예약 시각이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
 			return
 		}
@@ -106,7 +126,7 @@ class DatePickerActivity : AppCompatActivity() {
 		jsonObject["hour"] = hour
 		jsonObject["sessionNumber"] = ServerConnection.sessionNumber
 		jsonObject["userNumber"] = ServerConnection.userNumber
-		val result = send(jsonObject)
+		val result: JSONObject? = send(jsonObject)
 		if (result!!["result"].toString() == "OK") {
 			Toast.makeText(this, "예약 완료", Toast.LENGTH_SHORT).show()
 			setResult(RESULT_OK)

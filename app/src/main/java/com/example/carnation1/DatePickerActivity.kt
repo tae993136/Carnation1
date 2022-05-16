@@ -100,10 +100,10 @@ class DatePickerActivity : AppCompatActivity() {
 		val jsonObject = JSONObject()
 		jsonObject["parkingSpot"] = intent.getStringExtra("parkingSpot")
 		jsonObject["type"] = "reservation"
-		jsonObject["year"] = year.toString()
-		jsonObject["month"] = month.toString()
-		jsonObject["day"] = day.toString()
-		jsonObject["hour"] = hour.toString()
+		jsonObject["year"] = year
+		jsonObject["month"] = month
+		jsonObject["day"] = day
+		jsonObject["hour"] = hour
 		jsonObject["sessionNumber"] = ServerConnection.sessionNumber
 		jsonObject["userNumber"] = ServerConnection.userNumber
 		val result = send(jsonObject)

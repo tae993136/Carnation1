@@ -12,11 +12,7 @@ public class MyPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-        ((Button) findViewById(R.id.myPage_Reservation_button)).setOnClickListener((view) -> {
-            startActivity(new Intent(this, management.class));
-        });
-        ((Button) findViewById(R.id.myPage_BackButton)).setOnClickListener((view) -> {
-            startActivity(new Intent(this, MainScreen.class));
-        });
+        findViewById(R.id.myPage_Reservation_button).setOnClickListener((view) -> startActivity(new Intent(this, management.class)));
+        findViewById(R.id.myPage_BackButton).setOnClickListener((view) -> startActivity(new Intent(this, MainScreen.class)));
     }
 }

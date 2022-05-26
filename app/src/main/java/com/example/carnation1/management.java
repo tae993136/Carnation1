@@ -70,7 +70,7 @@ public class management extends AppCompatActivity {
             ((ImageView) reservationInfoView.findViewById(R.id.parkingLotReservationView_thumbnail)).setImageResource(R.drawable.reservation_ok);
             String positionReserved = jsonResult.get("position").toString();
             ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Position))
-                    .setText(String.format("%c열 %s칸", positionReserved.charAt(0), positionReserved.substring(1)));
+                    .setText(String.format("%s번", positionReserved));
             ((TextView) reservationInfoView.findViewById(R.id.parkingLotReservationView_Date)).setText(
                     String.format("%d년 %d월 %d일",
                             jsonResult.get("year"),

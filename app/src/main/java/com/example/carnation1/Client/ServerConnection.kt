@@ -90,7 +90,8 @@ object ServerConnection {
 			object : AsyncTask<JSONObject?, Void?, JSONObject?>() {
 				@Deprecated("Deprecated in Java")
 				override fun doInBackground(vararg data: JSONObject?): JSONObject? {
-					if (socket == null || socket!!.isClosed) return null
+					if (socket == null || socket!!.isClosed)
+						if(!connect()) return null
 					Log.d("#ServerConnection", data[0]?.toJSONString() ?: "")
 					try {
 						os!!.write(data[0]!!.toJSONString().toByteArray(StandardCharsets.UTF_8))
